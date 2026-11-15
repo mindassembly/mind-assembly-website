@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mindassembly.netlify.app/sitemap.xml
