@@ -1,0 +1,16 @@
+{
+  "name": "mind-assembly-explore",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/import-legacy.mjs && astro dev",
+    "build": "node scripts/import-legacy.mjs && astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^6.0.0",
+    "pagefind": "^1.6.0"
+  }
+}

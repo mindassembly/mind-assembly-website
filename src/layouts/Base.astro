@@ -1,0 +1,46 @@
+---
+import '../styles/site.css';
+const { title = 'Explore', description = 'A psychology library and research reading room.', active = 'Explore' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f0e7" />
+  <title>{title} — Mind Assembly</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/mind-assembly-icon.png" type="image/png" />
+  <slot name="head" />
+</head>
+<body>
+  <a class="screenreader" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="site-wrap site-navline">
+      <a class="site-logo" href="/index.html" aria-label="Mind Assembly homepage">
+        <span class="site-logo-mark" aria-hidden="true">M</span><span>MIND ASSEMBLY</span>
+      </a>
+      <button class="nav-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false">☰ Menu</button>
+      <nav class="site-nav" id="site-nav" data-site-nav aria-label="Main navigation">
+        <a href="/index.html">Home</a><a href="/about.html">About</a><a href="/people.html">Our People</a><a href="/initiatives.html">Initiatives</a><a href="/explore/" aria-current={active==='Explore'?'page':undefined}>Explore</a><a href="/join.html">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+  <slot />
+  <footer class="library-footer">
+    <div class="site-wrap">
+      <div class="footer-main">
+        <div><div class="footer-title">MIND ASSEMBLY</div><p>An independent student-led psychology collective. Educational reading, not a clinical mental-health service.</p></div>
+        <div><span class="mini-rule" style="color:#dca785">On this site</span><div class="footer-links" style="margin-top:20px"><a href="/explore/">Explore library</a><a href="/initiatives.html">Initiatives</a><a href="/people.html">Our People</a><a href="/join.html">Get Involved</a></div></div>
+        <div><span class="mini-rule" style="color:#dca785">Find Mind Assembly</span><div class="footer-links" style="margin-top:20px"><a href="https://www.instagram.com/mind_assembly/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.linkedin.com/company/mind-assembly/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="mailto:mindassembly2026@gmail.com">Email ↗</a></div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> Mind Assembly</span><span>Research-led reading · Source-linked · Human review required</span></div>
+    </div>
+  </footer>
+  <script src="/scripts/mobile-navigation.js" defer></script>
+  <script is:inline>document.querySelectorAll('#year').forEach(y=>y.textContent=new Date().getFullYear());</script>
+</body>
+</html>
