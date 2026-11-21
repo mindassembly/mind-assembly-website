@@ -1139,3 +1139,18 @@
   z-index: 9999;
   border: 2px solid #a94f29;
 }
+
+/* Mobile correction: remove oversized decorative mark behind Inquiry Desk copy. */
+@media (max-width: 760px) {
+  .editorial-home .ed-feature-mark {
+    display: none;
+  }
+}
+
+/* Remove separate decorative arrow icons, if present inside text links.
+   Literal arrow characters in HTML must be removed from the HTML itself. */
+.editorial-home .ed-text-link .arrow,
+.editorial-home .ed-text-link .link-arrow,
+.editorial-home .ed-text-link svg[aria-hidden="true"] {
+  display: none;
+}
