@@ -1,0 +1,13 @@
+MIND ASSEMBLY — HOMEPAGE EDITORIAL REDESIGN
+
+1. Unzip this folder to a NEW location. Do not overwrite your working repository yet.
+2. Open the extracted folder in VS Code.
+3. Right-click index.html and choose Open with Live Server.
+4. Review the homepage on desktop and mobile before copying files into your repository.
+
+Files changed: index.html; assets/home-editorial.css; assets/home-editorial.js; assets/editorial-psychology-collage.png.
+All other pages and existing project files are retained.
+
+The hero collage is newly generated original artwork. The feature photograph comes from your existing site assets. No unpublished article is presented as a real publication.
+
+After approval, copy only those four changed files into your original repository, commit, and push.

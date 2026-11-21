@@ -1,0 +1,8 @@
+MIND ASSEMBLY — REFINED HOMEPAGE
+
+1. Unzip the downloaded file.
+2. In VS Code choose File > Open Folder and select the folder Mind_Assembly_Homepage_Refined (not its assets subfolder).
+3. In Explorer, right-click index.html and choose Open with Live Server.
+4. This is a local preview, not a deployed release. Do not push to GitHub until you approve.
+
+This update changes index.html and assets/home-editorial.css and adds three image thumbnails in assets. Other website pages are retained.
