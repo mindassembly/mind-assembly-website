@@ -47,14 +47,6 @@ const route = (a) => `/${a.data.section}/${a.id}/`;
         </div><div class="no-results" id="catalog-empty" hidden>No readings match this filter. Try a different term or subject.</div>
       </div></div>
     </div></section>
-    <section class="search-band"><div class="site-wrap"><span class="mini-rule">LOOK INSIDE THE ARTICLES</span><h2>Full-text search.</h2><p>Search beyond titles and summaries. Pagefind builds a lightweight search index from the published article text—no reader account or database required.</p><div class="pagefind-block" id="fulltext-search"></div><p id="pagefind-note" style="font-size:12px">Full-text search appears after <code>npm run build</code>. The catalogue filter above also works during development.</p></div></section>
   </main>
-  <link slot="head" href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script src="/scripts/explore-filter.js" defer></script>
-  <script is:inline type="module">
-    import('/pagefind/pagefind-ui.js').then(({ PagefindUI }) => {
-      new PagefindUI({ element: '#fulltext-search', showSubResults: true, resetStyles: false });
-      const note = document.getElementById('pagefind-note'); if (note) note.hidden = true;
-    }).catch(() => {});
-  </script>
+ <script src="/scripts/explore-filter.js" defer></script>
 </Base>
