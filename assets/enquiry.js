@@ -35,6 +35,7 @@
     const widget = window.turnstile.render('#enquiry-turnstile', {
       sitekey: siteKey,
       size: 'flexible',
+      theme: 'light',
       action: 'enquiry',
       callback: updateToken,
       'expired-callback': () => updateToken(),
