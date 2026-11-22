@@ -206,3 +206,52 @@
     grid-template-columns: 1fr;
   }
 }
+
+.involvement-enquiry {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(42px, 6vw, 80px);
+  scroll-margin-top: 100px;
+}
+
+.involvement-enquiry form {
+  display: grid;
+  gap: 9px;
+  max-width: 42rem;
+  margin-top: 24px;
+}
+
+.involvement-enquiry label {
+  font-weight: 700;
+}
+
+.involvement-enquiry :is(select, textarea, input) {
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--muted);
+  background: var(--cream);
+  color: var(--ink);
+  font: inherit;
+}
+
+.involvement-enquiry textarea {
+  resize: vertical;
+}
+
+.involvement-enquiry button {
+  justify-self: start;
+}
+
+.involvement-enquiry button:disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+#enquiry-status {
+  margin: 0;
+}
+
+#enquiry-fallback {
+  color: var(--rust);
+}
