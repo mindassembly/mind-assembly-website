@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const all = await getCollection('articles');
+  return all.filter(a=>a.data.section === 'library').map(article=>({params:{slug:article.id},props:{article}}));
+}
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+const all = await getCollection('articles');
+const related = all.filter(a=>a.id!==article.id && a.data.category===article.data.category).concat(all.filter(a=>a.id!==article.id && a.data.category!==article.data.category && a.data.section===article.data.section)).slice(0,3);
+const route = a => `/${a.data.section}/${a.id}/`;
+---
+<Base title={article.data.title} description={article.data.excerpt}>
+  <main id="main">
+    <header class="article-hero"><div class="site-wrap"><a href="/explore/" class="article-breadcrumb">← Back to Explore</a><div class="mini-rule" style="margin-top:31px">{article.data.section==='library'?'PSYCHOLOGY LIBRARY':'RESEARCH & PERSPECTIVES'} / {article.data.category}</div><h1>{article.data.title}</h1><p class="article-summary">{article.data.excerpt}</p><div class="article-meta"><span>{article.data.level}</span><span>{article.data.minutes} minute read</span><span>{article.data.category}</span></div></div></header>
+    <div class="article-body-shell"><div class="site-wrap article-columns"><aside class="article-aside"><strong>On this page</strong><nav class="article-toc" aria-label="Article contents">{headings.filter(h=>h.depth===2).map(h=><a href={`#${h.slug}`}>{h.text}</a>)}</nav></aside>
+      <div><p class="article-status"><strong>Editorial sample:</strong> This reading has not yet undergone Mind Assembly's editorial review. Verify all sources, interpretation and permissions before public release.</p>
+        <article class="article-prose" data-pagefind-body><Content /></article>
+        <section class="article-sources" aria-labelledby="sources-title"><h2 id="sources-title">Sources & further reading</h2><ul>{article.data.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a></li>)}</ul><a class="article-back" href="/explore/">← Return to reading catalogue</a></section>
+      </div>
+    </div></div>
+    {related.length>0 && <section class="related"><div class="site-wrap"><h2>Continue reading</h2><div class="related-grid">{related.map(a=><a href={route(a)}><strong>{a.data.title}</strong><span>{a.data.category} ↗</span></a>)}</div></div></section>}
+  </main>
+</Base>
