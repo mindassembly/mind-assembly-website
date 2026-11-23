@@ -1,5 +1,4 @@
-<input type="email" name="replyEmail" id="enquiry-email" autocomplete="email" maxlength="254" placeholder="you@example.com" aria-describedby="enquiry-email-help" />
-                <small id="enquiry-email-help">Leave your email if you’d like us to reply.</small>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -151,7 +150,7 @@
           <div class="enquiry-intro">
             <h2 id="enquiry-title" class="editorial-title">Send us a <em>message.</em></h2>
             <p>Tell us what you’d like to write, research, or explore with Mind Assembly.</p>
-            <p id="enquiry-privacy">Mind Assembly uses your message to review your enquiry and your email to reply if you share it. Please leave out sensitive personal or health details.</p>
+            <p id="enquiry-privacy">Mind Assembly uses your message to review your enquiry and your email to reply if you share it.</p>
           </div>
           <form id="enquiry-form" aria-describedby="enquiry-privacy">
             <div class="enquiry-fields">
@@ -166,7 +165,8 @@
               </div>
               <div class="enquiry-field">
                 <label for="enquiry-email">Reply email <span>(optional)</span></label>
-                <input type="email" name="replyEmail" id="enquiry-email" autocomplete="email" maxlength="254" placeholder="you@example.com" />
+                <input type="email" name="replyEmail" id="enquiry-email" autocomplete="email" maxlength="254" placeholder="you@example.com" aria-describedby="enquiry-email-help" />
+                <small id="enquiry-email-help">Leave your email if you’d like us to reply.</small>
               </div>
               <div class="enquiry-field enquiry-field-message">
                 <label for="enquiry-message">Message</label>
