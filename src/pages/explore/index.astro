@@ -30,18 +30,18 @@ const route = (a) => `/${a.data.section}/${a.id}/`;
       <a class="collection-mode" href="#catalog" data-mode-jump="research"><div><span class="mini-rule">THE SECOND COLLECTION</span><h2 class="mode-head">Research & Perspectives</h2><div class="mode-desc">Closer readings of evidence, emerging constructs, and the limits of research claims.</div></div><span class="mode-arrow">↗</span></a>
     </div></div>
     <section id="catalog" class="collection-area" aria-labelledby="catalog-heading"><div class="site-wrap">
-      <div class="section-top"><div><span class="mini-rule">EXPLORE / INDEX</span><h2 id="catalog-heading">The reading catalogue.</h2></div><p>Begin with a subject, a collection or a question. The catalogue grows without becoming one endless scroll of text.</p></div>
+      <div class="section-top"><div><span class="mini-rule">EXPLORE / INDEX</span><h2 id="catalog-heading">The reading catalogue.</h2></div><p>Begin with a subject, a collection or a question. Follow a <a href="/learning/">learning pathway</a> for a guided sequence.</p></div>
       <div class="catalog-shell"><aside class="catalog-sidebar" aria-label="Filter by subject">
         <h3>Subjects</h3><div class="filter-list"><button class="filter-button" type="button" data-subject-filter="All subjects" aria-pressed="true"><span>All subjects</span><span class="filter-count">{articles.length}</span></button>
           {subjects.map(subject=><button type="button" class="filter-button" data-subject-filter={subject} aria-pressed="false"><span>{subject}</span><span class="filter-count">{categoryCounts[subject]}</span></button>)}
-        </div><p class="sidebar-note">Every entry is an editorial sample for review. Source links appear on each reading page.</p>
+        </div><p class="sidebar-note">Each reading includes sources and its editorial status.</p>
       </aside><div class="catalog-main">
-        <div class="catalog-toolbar"><label class="catalog-search"><span class="search-icon" aria-hidden="true">⌕</span><span class="screenreader">Search titles, topics and descriptions</span><input id="catalog-query" type="search" autocomplete="off" placeholder="Search a topic, theory or question..."/><button type="button" class="search-clear" id="catalog-clear" hidden>Clear</button></label>
+        <div class="catalog-toolbar"><label class="catalog-search"><span class="search-icon" aria-hidden="true">⌕</span><span class="screenreader">Search titles, topics and descriptions</span><input id="catalog-query" type="search" autocomplete="off" placeholder="Search a topic, theory or question..."/></label><button type="button" class="search-clear" id="catalog-clear" hidden>Clear</button>
           <div class="collection-tabs" aria-label="Filter by collection"><button type="button" class="collection-tab" data-section-filter="all" aria-pressed="true">All readings</button><button type="button" class="collection-tab" data-section-filter="library" aria-pressed="false">Psychology Library</button><button type="button" class="collection-tab" data-section-filter="research" aria-pressed="false">Research & Perspectives</button></div></div>
-        <div class="result-summary"><span id="result-count">{articles.length} readings shown</span><span>Sample collection · not final publication</span></div>
+        <div class="result-summary"><span id="result-count" role="status">{articles.length} readings shown</span></div>
         <div class="cards" id="article-cards">
           {articles.map(article=><article class="article-card" data-article-card data-category={article.data.category} data-section={article.data.section} data-search={`${article.data.title} ${article.data.excerpt} ${article.data.category} ${article.data.level}`}>
-            <div><div class="card-accent"></div><div class="card-inside"><div class="card-meta"><span>{article.data.category}</span><span>{article.data.section==='library'?'Library':'Research'}</span></div><h3>{article.data.title}</h3><p>{article.data.excerpt}</p></div></div>
+            <div><div class="card-accent"></div><div class="card-inside"><div class="card-meta"><span>{article.data.category}</span><span>{article.data.section==='library'?'Library':'Research'}</span></div><h3><a href={route(article)}>{article.data.title}</a></h3><p>{article.data.excerpt}</p></div></div>
             <div class="card-bottom"><a href={route(article)} aria-label={`Read ${article.data.title}`}>Open reading ↗</a><span>{article.data.minutes} min</span></div>
           </article>)}
         </div><div class="no-results" id="catalog-empty" hidden>No readings match this filter. Try a different term or subject.</div>

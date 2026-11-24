@@ -1,0 +1,15 @@
+---
+import Section from '../../layouts/Section.astro';
+import { issues } from '../../data/programme';
+export function getStaticPaths() {
+  return issues.map(issue => ({ params: { slug: issue.slug }, props: { issue } }));
+}
+const { issue } = Astro.props;
+---
+<Section title={issue.title} description="An issue of The Assembly Review.">
+  <p><time datetime={issue.published}>{issue.published}</time></p>
+  {issue.sections.map(section => <section>
+    <h2>{section.name}</h2>
+    <ul>{section.readings.map(reading => <li><a href={reading.url}>{reading.title}</a></li>)}</ul>
+  </section>)}
+</Section>

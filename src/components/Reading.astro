@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+const all = await getCollection('articles');
+const related = all.filter(a=>a.id!==article.id && a.data.category===article.data.category).concat(all.filter(a=>a.id!==article.id && a.data.category!==article.data.category && a.data.section===article.data.section)).slice(0,3);
+const { author, reviewer, published, updated, subtitle, reviewStatus } = article.data;
+const dateLabel = (date: Date) => date.toLocaleDateString('en-GB', { dateStyle: 'medium', timeZone: 'UTC' });
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.data.title,
+  description: article.data.excerpt,
+  ...(author && { author: { '@type': 'Person', name: author } }),
+  ...(published && { datePublished: published.toISOString() }),
+  ...(updated && { dateModified: updated.toISOString() })
+};
+const route = a => `/${a.data.section}/${a.id}/`;
+---
+<Base title={article.data.title} description={article.data.excerpt}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData).replaceAll("<", "\\u003c")} />
+  <main id="main">
+    <header class="article-hero"><div class="site-wrap"><a href="/explore/" class="article-breadcrumb">← Back to Explore</a><div class="mini-rule" style="margin-top:31px">{article.data.section==='library'?'PSYCHOLOGY LIBRARY':'RESEARCH & PERSPECTIVES'} / {article.data.category}</div><h1>{article.data.title}</h1><p class="article-summary">{subtitle ?? article.data.excerpt}</p><div class="article-meta"><span>{article.data.level}</span><span>{article.data.minutes} minute read</span>{author && <span>By {author}</span>}
+      {reviewer && <span>Reviewed by {reviewer}</span>}
+      {published && <time datetime={published.toISOString()}>Published {dateLabel(published)}</time>}
+      {updated && <time datetime={updated.toISOString()}>Updated {dateLabel(updated)}</time>}
+      </div></div></header>
+    <div class="article-body-shell"><div class="site-wrap article-columns"><aside class="article-aside"><strong>On this page</strong><nav class="article-toc" aria-label="Article contents">{headings.filter(h=>h.depth===2).map(h=><a href={`#${h.slug}`}>{h.text}</a>)}</nav></aside>
+      <div><p class="article-status">{reviewStatus}. <a href="/editorial/">Editorial standards</a></p>
+        <article class="article-prose" data-pagefind-body><Content /></article>
+        <section class="article-sources" aria-labelledby="sources-title"><h2 id="sources-title">Sources & further reading</h2><ul>{article.data.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a></li>)}</ul><a class="article-back" href="/explore/">← Return to reading catalogue</a></section>
+      </div>
+    </div></div>
+    {related.length>0 && <section class="related"><div class="site-wrap"><h2>Continue reading</h2><div class="related-grid">{related.map(a=><a href={route(a)}><strong>{a.data.title}</strong><span>{a.data.category} ↗</span></a>)}</div></div></section>}
+  </main>
+</Base>

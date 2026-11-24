@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../../layouts/Section.astro';
+
+const readings = await getCollection('articles');
+const slugs = ['how-to-read-a-methods-section', 'correlation-and-causation', 'reliability-and-validity', 'effect-sizes-confidence-intervals-power'];
+const pathway = slugs.map(slug => readings.find(reading => reading.id === slug));
+---
+<Section title="Learning pathways" description="Follow a sequence of readings in the psychology library.">
+  {pathway.every(Boolean) && <section>
+    <h2>Understanding research</h2>
+    <p>Start by reading a methods section, then practise judging causal claims, the quality of measures and the precision of results.</p>
+    <ol>{pathway.map(reading => reading && <li><a href={`/${reading.data.section}/${reading.id}/`}>{reading.data.title}</a> · {reading.data.level}</li>)}</ol>
+  </section>}
+</Section>

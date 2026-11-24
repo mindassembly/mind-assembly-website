@@ -1,0 +1,9 @@
+---
+import Section from '../../layouts/Section.astro';
+import { issues } from '../../data/programme';
+---
+<Section title="The Assembly Review" description="A planned editorial publication for psychology students.">
+  {issues.length === 0 && <p>The first issue is in planning. We welcome pitches for sourced explainers, discussions of new research and student perspectives.</p>}
+  {issues.length > 0 && <ul>{issues.map(issue => <li><a href={`/assembly-review/${issue.slug}/`}>{issue.title}</a></li>)}</ul>}
+  <p><a href="/editorial/">Read our contributor guidelines</a></p>
+</Section>

@@ -1,0 +1,32 @@
+---
+import Section from '../layouts/Section.astro';
+import { projects } from '../data/programme';
+---
+<Section title="Projects and research" description="Follow project proposals, ongoing work and outputs from the collective.">
+  <label for="project-search">Search by topic, category or status</label>
+  <input type="search" id="project-search" />
+  <p id="project-count" role="status"></p>
+  {projects.map(project => <article data-project>
+    <h2>{project.title}</h2>
+    <p>{project.category} · {project.status}</p>
+    <p>{project.description}</p>
+    {project.objectives && <p>{project.objectives}</p>}
+    {project.team?.length > 0 && <p>Team members · {project.team.join(', ')}</p>}
+    {project.timeline && <p>Timeline · {project.timeline}</p>}
+    {project.outputs?.length > 0 && <ul>{project.outputs.map(link => <li><a href={link.url}>{link.title}</a></li>)}</ul>}
+  </article>)}
+</Section>
+<script>
+  const search = document.querySelector<HTMLInputElement>('#project-search');
+  const count = document.querySelector('#project-count');
+  const projects = [...document.querySelectorAll<HTMLElement>('[data-project]')];
+
+  search?.addEventListener('input', () => {
+    const query = search.value.trim().toLowerCase();
+    for (const project of projects) {
+      project.hidden = !project.textContent.toLowerCase().includes(query);
+    }
+    const visible = projects.filter(project => !project.hidden).length;
+    count.textContent = visible ? `${visible} matching ${visible === 1 ? 'entry' : 'entries'}` : 'No entries match your search.';
+  });
+</script>

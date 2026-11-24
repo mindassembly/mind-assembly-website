@@ -28,7 +28,24 @@
       property="og:image"
       content="https://mindassembly.in/assets/mind-assembly-logo.webp"
     />
-  </head>
+
+    <link rel="canonical" href="https://mindassembly.in/" />
+    <meta property="og:url" content="https://mindassembly.in/" />
+      <link rel="stylesheet" href="/assets/collective.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Mind Assembly",
+  "url": "https://mindassembly.in/",
+  "logo": "https://mindassembly.in/assets/mind-assembly-logo.webp",
+  "sameAs": [
+    "https://www.instagram.com/mind_assembly/",
+    "https://www.linkedin.com/company/mind-assembly/"
+  ]
+}
+</script>
+</head>
   <body class="editorial-home">
     <a class="skip" href="#main">Skip to main content</a>
     <header class="ed-header">
@@ -64,31 +81,35 @@
       </div>
     </header>
     <main id="main" tabindex="-1">
-      <section class="ed-hero ed-container" aria-labelledby="hero-title">
-        <div class="ed-hero-copy">
-          <p class="ed-kicker">A STUDENT-LED PSYCHOLOGY COLLECTIVE</p>
-          <h1 id="hero-title">The mind is not<br /><em>a simple thing.</em></h1>
-          <p class="ed-hero-italic">Neither is the conversation around it.</p>
-          <p class="ed-hero-description">
-            Mind Assembly brings together curious minds to explore psychology
-            through evidence, questions and different perspectives.
-          </p>
-          <div class="ed-actions">
-            <a class="ed-button ed-button-filled" href="/explore/"
-              >Browse the psychology library</a
-            ><a class="ed-button ed-button-outline" href="join.html"
-              >Get Involved</a
-            >
+      <section class="ma-home-intro" aria-labelledby="hero-title">
+        <div class="ed-container">
+          <h1 id="hero-title">Psychology is a conversation.</h1>
+          <p>We’re a student-led collective reading psychology, discussing evidence and building research ideas together.</p>
+          <div class="ma-home-actions">
+            <a href="/explore/">Explore the library</a>
+            <a href="join.html">Get involved</a>
           </div>
         </div>
-        <figure class="ed-hero-art">
-          <img
-            src="assets/editorial-psychology-collage.png"
-            alt="Vintage cut-paper collage of a marble bust, engraved brain, botanical forms and textured rust and navy papers"
-          />
-          <figcaption>BETTER QUESTIONS.<br />DEEPER UNDERSTANDING.</figcaption>
-        </figure>
       </section>
+      <div class="ed-container ma-home-feature">
+        <section aria-labelledby="feature-title">
+          <img src="assets/people-study.webp" alt="Students reading and working around a table" />
+          <div>
+            <p class="ma-home-label">From the library</p>
+            <h2 id="feature-title">What makes it easier to speak up?</h2>
+            <a href="/library/psychological-safety/">Read about psychological safety</a>
+            <a href="/research/psychological-safety-team-learning/">Examine the evidence on team learning</a>
+          </div>
+        </section>
+        <section class="ma-home-participation" aria-labelledby="take-part-title">
+          <h2 id="take-part-title">Take part</h2>
+          <ul>
+            <li><a href="join.html#community">Join the community</a></li>
+            <li><a href="join.html#writing">Pitch a piece</a></li>
+            <li><a href="join.html#research">Collaborate on research</a></li>
+          </ul>
+        </section>
+      </div>
       <section class="ed-explore" aria-labelledby="explore-title">
         <div class="ed-container ed-explore-grid">
           <div class="ed-explore-intro">
@@ -120,27 +141,6 @@
           </div>
         </div>
       </section>
-      <section class="ed-feature" aria-labelledby="feature-title">
-        <div class="ed-feature-image">
-          <img
-            src="assets/people-study.webp"
-            alt="An overhead view of students reading and working together around a table"
-            loading="lazy"
-          />
-        </div>
-        <div class="ed-feature-copy">
-          <p class="ed-kicker">FROM THE PSYCHOLOGY LIBRARY</p>
-          <h2 id="feature-title">What makes it easier to speak up?</h2>
-          <p>
-            Start with psychological safety. What would make it easier to ask
-            for help, raise a concern, or disagree in a group?
-          </p>
-          <a class="ed-text-link" href="/library/psychological-safety/"
-            >Read about psychological safety</a
-          >
-          <p><a class="ed-text-link" href="/research/psychological-safety-team-learning/">Examine the evidence on team learning</a></p>
-        </div>
-      </section>
       <section
         class="ed-initiatives ed-container"
         aria-labelledby="initiatives-title"
@@ -154,6 +154,7 @@
           <a class="ed-text-link" href="initiatives.html"
             >Explore our initiatives</a
           >
+          <p><a class="ed-text-link" href="/events/">See events and discussions</a></p>
         </div>
         <div class="ed-initiatives-cards">
           <a class="ed-mini-card" href="initiatives.html"
@@ -235,6 +236,12 @@
         ><a href="contact.html">Contact</a><a href="faq.html">FAQs</a
         ><span>Psychology & Beyond</span>
       </div>
+      <nav class="ma-footer-nav" aria-label="Policies and programme">
+        <a href="/editorial/">Editorial standards</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/events/">Events</a>
+        <a href="/projects/">Projects and research</a>
+      </nav>
     </footer>
     <script src="main.js" defer></script>
     <script src="assets/home-editorial.js" defer></script>

@@ -1,0 +1,17 @@
+---
+import Base from './Base.astro';
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description} active="">
+  <main id="main" class="section-page">
+    <header class="article-hero">
+      <div class="site-wrap">
+        <h1>{title}</h1>
+        <p class="article-summary">{description}</p>
+      </div>
+    </header>
+    <div class="site-wrap section-copy">
+      <slot />
+    </div>
+  </main>
+</Base>

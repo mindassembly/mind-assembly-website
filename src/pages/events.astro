@@ -1,0 +1,22 @@
+---
+import Section from '../layouts/Section.astro';
+import { discussions } from '../data/programme';
+
+const groups = ['Confirmed', 'Proposed', 'Past'] as const;
+---
+<Section title="Events and discussions" description="Journal clubs and academic conversations from Mind Assembly.">
+  {!discussions.some(event => event.status === 'Confirmed') && <p>There are currently no confirmed events.</p>}
+  {groups.map(status => {
+    const entries = discussions.filter(event => event.status === status);
+    return entries.length > 0 && <section>
+      <h2>{status === 'Past' ? 'Past events' : status === 'Confirmed' ? 'Upcoming events' : 'Under discussion'}</h2>
+      {entries.map(event => <article>
+        <h3>{event.title}</h3>
+        <p>{event.description}</p>
+        {event.date && <p><time datetime={event.date}>{event.date}</time></p>}
+        {status === 'Confirmed' && event.registration && <p><a href={event.registration}>Register</a></p>}
+        {event.materials?.length > 0 && <ul>{event.materials.map(link => <li><a href={link.url}>{link.title}</a></li>)}</ul>}
+      </article>)}
+    </section>;
+  })}
+</Section>
