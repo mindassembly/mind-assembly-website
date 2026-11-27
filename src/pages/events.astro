@@ -4,7 +4,7 @@ import { discussions } from '../data/programme';
 
 const groups = ['Confirmed', 'Proposed', 'Past'] as const;
 ---
-<Section title="Events and discussions" description="Journal clubs and academic conversations from Mind Assembly.">
+<Section title="Events and discussions" description="Journal clubs, academic conversations and past events from Mind Assembly.">
   {!discussions.some(event => event.status === 'Confirmed') && <p>There are currently no confirmed events.</p>}
   {groups.map(status => {
     const entries = discussions.filter(event => event.status === status);
@@ -13,6 +13,11 @@ const groups = ['Confirmed', 'Proposed', 'Past'] as const;
       {entries.map(event => <article>
         <h3>{event.title}</h3>
         <p>{event.description}</p>
+        {event.photos && event.photos.length > 0 && <ul class="event-gallery" aria-label={event.title + ' photos'}>
+          {event.photos.map(photo => <li>
+            <a href={photo.src}><img src={photo.src} alt={photo.alt} width="1120" height="840" loading="lazy" decoding="async" /></a>
+          </li>)}
+        </ul>}
         {event.date && <p><time datetime={event.date}>{event.date}</time></p>}
         {status === 'Confirmed' && event.registration && <p><a href={event.registration}>Register</a></p>}
         {event.materials?.length > 0 && <ul>{event.materials.map(link => <li><a href={link.url}>{link.title}</a></li>)}</ul>}
@@ -20,3 +25,24 @@ const groups = ['Confirmed', 'Proposed', 'Past'] as const;
     </section>;
   })}
 </Section>
+
+<style>
+  .event-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .event-gallery a {
+    display: block;
+  }
+
+  .event-gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+</style>
