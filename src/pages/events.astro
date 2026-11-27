@@ -10,7 +10,7 @@ const groups = ['Confirmed', 'Proposed', 'Past'] as const;
     const entries = discussions.filter(event => event.status === status);
     return entries.length > 0 && <section>
       <h2>{status === 'Past' ? 'Past events' : status === 'Confirmed' ? 'Upcoming events' : 'Under discussion'}</h2>
-      {entries.map(event => <article>
+      {entries.map(event => <article id={event.anchor}>
         <h3>{event.title}</h3>
         <p>{event.description}</p>
         {event.photos && event.photos.length > 0 && <ul class="event-gallery" aria-label={event.title + ' photos'}>

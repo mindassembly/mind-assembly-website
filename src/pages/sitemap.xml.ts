@@ -4,7 +4,7 @@ import { issues } from '../data/programme';
 export async function GET({ site }) {
   const articles = await getCollection('articles');
   const paths = [
-    '/', '/about', '/people', '/initiatives', '/explore/', '/join', '/faq', '/contact',
+    '/', '/about', '/people', '/explore/', '/join', '/faq', '/contact',
     '/events/', '/projects/', '/editorial/', '/editorial-board/', '/privacy/', '/learning/', '/assembly-review/',
     ...articles.map(article => `/${article.data.section}/${article.id}/`),
     ...issues.map(issue => `/assembly-review/${issue.slug}/`)

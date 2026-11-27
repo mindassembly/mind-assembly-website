@@ -28,6 +28,7 @@ export type Discussion = {
   title: string;
   description: string;
   status: 'Proposed' | 'Confirmed' | 'Past';
+  anchor?: string;
   date?: string;
   registration?: string;
   photos?: { src: string; alt: string }[];
@@ -42,6 +43,7 @@ export const discussions: Discussion[] = [
   },
   {
     title: 'Five-Day Nutrition Week',
+    anchor: 'nutrition-week',
     description: 'Sarah served as a judge and keynote speaker during a five-day school nutrition programme in Srinagar. Students presented dishes at the programme, which was held in collaboration with FSSAI through its Eat Right Schools initiative.',
     status: 'Past',
     photos: [
